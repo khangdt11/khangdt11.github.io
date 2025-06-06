@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ads Practice – Post Detail</title>
+  <!-- CSS chung -->
+  <link rel="stylesheet" href="assets/common.css" />
+
+  <!-- Link để load CSS riêng của exercise khi cần -->
+  <link id="exercise-css" rel="stylesheet" href="" />
+
+  <style>
+    /* Style cho vùng bao quanh mỗi exercise */
+    .exercise-box {
+      margin: 2rem 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #fafafa;
+    }
+    .exercise-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #e8e8e8;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #bbb;
+      cursor: pointer;
+    }
+    .exercise-header h2 {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+    .exercise-header button.toggle-btn {
+      font-size: 1.2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1;
+    }
+    .exercise-body {
+      display: none; /* Mặc định ẩn */
+      padding: 1rem;
+    }
+    .exercise-box.active .exercise-body {
+      display: block; /* Khi .active thì show */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Trang chủ</a></li>
+        <li><a href="post-detail.html">Bài chi tiết</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <h1>Thực hành JavaScript DOM & Ads</h1>
+      <p>Đây là phần mở đầu của bài viết. Bạn có thể đọc lý thuyết trước và sau đó mở các bài tập ở bên dưới.</p>
+
+      <!-- === Exercise #1: Ad Simple === -->
+      <div class="exercise-box" id="box-ad-simple">
+        <div class="exercise-header" data-target="ad-simple">
+          <h2>Level 1 – Bài 1: Ad Simple</h2>
+          <button class="toggle-btn">+</button>
+        </div>
+        <div class="exercise-body">
+          <!-- Placeholder để loader đẩy instructions.html và chạy exercise.js -->
+          <div class="exercise-container" data-level="1" data-id="ad-simple"></div>
+        </div>
+      </div>
+
+      <p>Phần này là nội dung giữa hai bài, bạn có thể chèn bất kỳ văn bản nào ở đây.</p>
+
+      <!-- === Exercise #2: Show Ad === -->
+      <div class="exercise-box" id="box-show-ad">
+        <div class="exercise-header" data-target="show-ad">
+          <h2>Level 1 – Bài 2: Show Ad</h2>
+          <button class="toggle-btn">+</button>
+        </div>
+        <div class="exercise-body">
+          <div class="exercise-container" data-level="1" data-id="show-ad"></div>
+        </div>
+      </div>
+
+
+      <!-- === Exercise #3: Scroll Ad === -->
+      <div class="exercise-box" id="box-scroll-ad">
+        <div class="exercise-header" data-target="scroll-ad">
+          <h2>Level 2 – Bài 3: Scroll Ad</h2>
+          <button class="toggle-btn">+</button>
+        </div>
+        <div class="exercise-body">
+          <div class="exercise-container" data-level="2" data-id="scroll-ad"></div>
+        </div>
+      </div>
+
+      <p>Kết thúc bài viết ví dụ. Bạn có thể tiếp tục thêm bài mới theo mẫu giống trên.</p>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2025 Ads Practice Project</p>
+  </footer>
+
+  <!-- Script để toggle show/hide và load exercise -->
+  <script>
+    // 1. Khi bấm vào header (hoặc nút +/−), toggle .active trên exercise-box
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".exercise-header").forEach(header => {
+        header.addEventListener("click", () => {
+          const box = header.parentElement; // .exercise-box
+          box.classList.toggle("active");
+          const btn = header.querySelector(".toggle-btn");
+          btn.textContent = box.classList.contains("active") ? "−" : "+";
+
+          // Khi mới chuyển sang trạng thái active, nếu chưa load nội dung lần nào, gọi loader
+          if (box.classList.contains("active")) {
+            const container = box.querySelector(".exercise-container");
+            if (!container.hasAttribute("data-loaded")) {
+              // Gắn cờ đã load để không load lại
+              container.setAttribute("data-loaded", "true");
+
+              // Gọi hàm load exercise (sẽ định nghĩa ở bên dưới)
+              const level = container.getAttribute("data-level");
+              const id = container.getAttribute("data-id");
+              loadExercise(level, id, container);
+            }
+          }
+        });
+      });
+    });
+
+    // 2. Hàm load 3 phần: instructions.html, exercise.css (nếu có), exercise.js
+    async function loadExercise(level, id, container) {
+      // 2.1 Load instructions.html
+      const htmlPath = `exercises/level${level}/${id}/instructions.html`;
+      try {
+        const resp = await fetch(htmlPath);
+        if (!resp.ok) throw new Error(`Không tìm thấy ${htmlPath}`);
+        const html = await resp.text();
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = html;
+        container.appendChild(wrapper);
+      } catch (err) {
+        container.innerHTML = `<p style="color:red">Lỗi load hướng dẫn: ${err.message}</p>`;
+      }
+
+      // 2.2 Load exercise.css nếu có
+      const cssLink = document.getElementById("exercise-css");
+      const cssPath = `exercises/level${level}/${id}/exercise.css`;
+      fetch(cssPath, { method: "HEAD" })
+        .then(r => {
+          if (r.ok) {
+            cssLink.href = cssPath;
+            cssLink.disabled = false;
+          } else {
+            cssLink.removeAttribute("href");
+            cssLink.disabled = true;
+          }
+        })
+        .catch(() => {
+          cssLink.removeAttribute("href");
+          cssLink.disabled = true;
+        });
+
+      // 2.3 Load exercise.js
+      const prevScript = document.getElementById("exercise-script");
+      if (prevScript) prevScript.remove();
+      const script = document.createElement("script");
+      script.id = "exercise-script";
+      script.src = `exercises/level${level}/${id}/exercise.js`;
+      script.type = "module"; // hoặc omit nếu không dùng ES module
+      script.onerror = () => {
+        console.error(`Không load được JS: level${level}/${id}/exercise.js`);
+      };
+      document.body.appendChild(script);
+    }
+  </script>
+</body>
+</html>

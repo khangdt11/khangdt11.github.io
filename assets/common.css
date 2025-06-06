@@ -1,0 +1,72 @@
+/* assets/common.css */
+
+/* Reset cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body & Typography */
+  body {
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background: #fff;
+    color: #333;
+    padding: 1rem;
+  }
+  
+  header, footer {
+    background: #f0f0f0;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #007acc;
+  }
+  
+  nav a:hover {
+    color: #004080;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  article p {
+    margin-bottom: 1rem;
+  }
+  
+  /* Container cho exercise (lớn hơn) */
+  .exercise-container {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    background: #fdfdfd;
+  }
+  
+  /* Style chung cho code block */
+  pre {
+    background: #272822;
+    color: #f8f8f2;
+    padding: 0.5rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  
+  code {
+    background: #eee;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: Consolas, "Courier New", monospace;
+  }
+  
