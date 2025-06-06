@@ -1,0 +1,11 @@
+/* body {
+    position: relative;
+} */
+#ad-floating {
+    position: fixed;
+    background-color: bisque;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    
+}
