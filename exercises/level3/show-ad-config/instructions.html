@@ -1,0 +1,28 @@
+<!-- exercises/level1/show-ad/instructions.html -->
+<section>
+    <h2>Bài 7: Viết function showAd(config) – SDK đơn giản</h2>
+    <p><strong>Mục tiêu:</strong></p>
+    <ul>
+      <li>Trừu tượng hóa logic tạo quảng cáo thành function có thể tái sử dụng</li>
+    </ul>
+    <p><strong>Yêu cầu:</strong></p>
+    <ul>
+      <li>Quảng cáo sẽ hiển thị ở top hoặc bottom tương ứng.</li>
+      <li>Sau timeout giây, quảng cáo sẽ tự động ẩn</li>
+      <li>Không được chồng nhiều quảng cáo lên nhau – chỉ cho phép 1 ad hiển thị cùng lúc</li>
+    </ul>
+
+    <form id = "config-form">
+      <label> <b>Nhập config</b></label> <br>
+      <label>Position:   </label>
+      <input type="radio" id="top" name="position" value="topAd">
+      <label for="top">top</label>
+      <input type="radio" id="bottom" name="position" value="bottomAd">
+      <label for="bottom">bottom</label><br>
+      <label>Hide after: </label>
+      <input type="number" id="timeout" max="20000" min="1000" step="1000" onkeydown="preventKeyboardInput(event)"><br>
+      <label>Content (HTML): </label>
+      <input type="text" id="content" placeholder="HTML"><br>
+      <button id="submit" value="submit">Tạo ad</button>
+    </form>
+  </section>

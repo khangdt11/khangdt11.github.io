@@ -1,0 +1,30 @@
+.ad-banner {
+    background-color: bisque;
+    padding: 20px;
+    width: 80%;
+    height: fit-content;
+    margin: 10px 0;
+    text-align: center;
+}
+.ad-container {
+    display: flex;
+    justify-content: center;
+}
+
+.topAd {
+    top: 0;
+}
+
+.bottomAd {
+    bottom: 0;
+}
+
+#config-form {
+    background: beige;
+    width: fit-content;
+    padding: 10px;
+}
+
+#timeout, #content {
+    width: -webkit-fill-available;
+}

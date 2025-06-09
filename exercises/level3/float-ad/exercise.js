@@ -1,7 +1,6 @@
 localStorage.setItem('adClosed', 'false');
 window.addEventListener('scroll', () => {
     let adClosed = localStorage.getItem('adClosed');
-    //Ban đầu không tồn tại adClosed ở localStored => thực hiện điều kiện thứ 2
     if(adClosed === 'true') {
         return;
     } else {
