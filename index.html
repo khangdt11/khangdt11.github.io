@@ -164,7 +164,7 @@
               const level = container.getAttribute("data-level");
               const id = container.getAttribute("data-id");
               loadExercise(level, id, container);
-            }
+            } 
           }
         });
       });
@@ -186,7 +186,7 @@
       }
 
       // 2.2 Load exercise.css nếu có
-      const cssLink = document.getElementById("exercise-css");
+     /* const cssLink = document.getElementById("exercise-css");
       const cssPath = `exercises/level${level}/${id}/exercise.css`;
       fetch(cssPath, { method: "HEAD" })
         .then(r => {
@@ -202,6 +202,14 @@
           cssLink.removeAttribute("href");
           cssLink.disabled = true;
         });
+      */
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = `exercises/level${level}/${id}/exercise.css`;
+      document.head.appendChild(link);
+
+      //link.outerHTML = `<link ref = "stylesheet" href = "exercises/level${level}/${id}/exercise.css"/>`
 
       // 2.3 Load exercise.js
       const prevScript = document.getElementById("exercise-script");
