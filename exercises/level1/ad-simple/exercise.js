@@ -25,3 +25,4 @@ $('#box-ad-simple .exercise-body').append(adContainer);
 $('#close-ad-btn').click(() => {
     $('#ad-banner').hide();
 })
+
