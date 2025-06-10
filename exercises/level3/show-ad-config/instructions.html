@@ -12,6 +12,53 @@
       <li>Không được chồng nhiều quảng cáo lên nhau – chỉ cho phép 1 ad hiển thị cùng lúc</li>
     </ul>
 
+    <pre><code>
+      function showAd(config) {
+     const adContainer = document.createElement('div');
+     adContainer.classList.add('ad-container');
+
+     const adBanner = document.createElement('div');
+     adBanner.className = 'ad-banner';
+     adBanner.innerHTML = `${config.content}`;
+     adContainer.appendChild(adBanner);
+
+     if(config.position === 'topAd') {
+          adContainer.classList.add('topAd');
+          document.querySelector('header').insertAdjacentElement("afterend", adContainer);
+     } else {
+          adContainer.classList.add('bottomAd');
+          document.querySelector('footer').insertAdjacentElement("beforebegin", adContainer);
+     }
+
+     setTimeout(() => {
+          adContainer.remove();
+     }, config.timeout);
+
+}
+
+document.getElementById('submit').addEventListener('click', (e) => {
+     e.preventDefault();
+     
+     const position = document.querySelector('input[name="position"]:checked')?.value;
+     const timeout = parseInt(document.getElementById("timeout").value);
+     const content = document.getElementById("content").value;
+
+     const config = {
+          position: position,
+          timeout: timeout,
+          content: content,
+     };
+     console.log(config);
+     if(!document.querySelector(`.${position}`)) {
+          showAd(config);
+     } else {
+          alert(`${position} not available`);
+     }
+});
+
+
+    </code></pre>
+
     <form id = "config-form">
       <label> <b>Nhập config</b></label> <br>
       <label>Position:   </label>

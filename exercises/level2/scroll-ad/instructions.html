@@ -7,5 +7,31 @@
       <li>Hiển thị một banner quảng cáo và chỉ chèn một lần duy nhất.</li>
     </ul>
     <p>Cuộn xuống dưới để thấy banner xuất hiện khi đạt 50% trang.</p>
+
+    <pre>
+    <code>
+    let checkAd = true;
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        const viewHeight = window.innerHeight;
+        const fullHeight = document.documentElement.scrollHeight;
+        const currentPlace = (scrollY + viewHeight) / fullHeight;
+        if(!document.querySelector('#ad-banner-scroll')) {
+            if(!checkAd && currentPlace >= 0.5) {
+                const adContainer = document.createElement('div');
+                adContainer.id = 'ad-banner-scroll';
+                adContainer.innerHTML = `&lt;h2&gt;Đây là banner quảng cáo&lt;/h2&gt;`;
+                document.getElementById('scroll-header').appendChild(adContainer);
+                checkAd = true;
+            }       
+            checkAd = false;      
+        } else {
+            if(!checkAd && currentPlace < 0.5) {
+                document.querySelector('#ad-banner-scroll').remove();
+            } 
+        }
+    });
+    </code>
+    </pre>
   </section>
   <script src="./exercise.js"></script>

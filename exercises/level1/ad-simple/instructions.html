@@ -7,6 +7,25 @@
       <li>Thêm nút "Đóng quảng cáo". Khi click, banner sẽ biến mất.</li>
     </ul>
     <p>Chạy đoạn script bên dưới để kiểm tra kết quả:</p>
+
+    <pre>
+    <code>
+    const adContainer = document.createElement('div');
+    adContainer.id = 'ad-banner';
+    adContainer.innerHTML = `&lt;h2&gt;Đây là quảng cáo đơn giản&lt;/h2&gt;
+        &lt;button id="close-ad-btn"&gt;Đóng quảng cáo&lt;/button&gt;
+    `;
+    document.querySelector('#box-ad-simple .exercise-body').appendChild(adContainer);
+
+    const btnClose = document.getElementById('close-ad-btn');
+
+    btnClose.addEventListener('click', () => {
+        adContainer.remove();
+    });
+    </code>
+    </pre>
+    
+
   </section>
   <script src="./exercise.js"></script>
   

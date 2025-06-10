@@ -64,9 +64,13 @@
   }
   
   code {
-    background: #eee;
     padding: 2px 4px;
     border-radius: 4px;
+    color: #272822;
     font-family: Consolas, "Courier New", monospace;
+  }
+
+  pre {
+    background-color: rgb(229, 226, 226);
   }
   

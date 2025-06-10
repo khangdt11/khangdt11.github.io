@@ -12,4 +12,20 @@
       <li>Khi người dùng click vào video, bỏ mute và phát tiếp</li>
       <li>Không reload video nếu đã từng click.</li>
     </ul>
+    <pre><code>
+      const videoAdContainer = document.createElement('div');
+      videoAdContainer.className = 'video-container';
+      document.querySelector('#box-video-ad .exercise-body').appendChild(videoAdContainer);
+      videoAdContainer.innerHTML = ` &ltvideo id="ad-video" height="550" autoplay muted loop
+                                          src = "assets/video/video.mp4">&lt/video&gt`;
+      //autoplay muted loop (auto replay)
+      const video = document.getElementById('ad-video');
+      document.querySelector('html').addEventListener('click', () => {
+        if(video.muted) {
+              video.muted = false;
+        } 
+      });
+
+
+    </code></pre>
   </section>

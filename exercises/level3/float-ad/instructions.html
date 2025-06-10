@@ -13,4 +13,32 @@
       <li>Có nút “Đóng”. Khi đóng, lưu adClosed=true vào localStorage</li>
       <li>Không hiện lại nếu đã đóng trước đó</li>
     </ul>
+    <pre>
+    <code>
+    localStorage.setItem('adClosed', 'false');
+    window.addEventListener('scroll', () => {
+        let adClosed = localStorage.getItem('adClosed');
+        if(adClosed === 'true') {
+            return;
+        } else {
+            if(scrollY > 200 && !document.querySelector('#ad-floating')) {
+                const adFloatContainer = document.createElement('div');
+                adFloatContainer.id = 'ad-floating';
+                adFloatContainer.innerHTML = `
+                    &lt;h2&gt;FLOATING ADS&lt;/h2&gt;
+                    &lt;button id="btn-close"&gt; Đóng &lt;/button&gt;`;
+                document.querySelector('body').appendChild(adFloatContainer);
+
+                const buttonClose = adFloatContainer.querySelector('#btn-close');
+                buttonClose.addEventListener('click', () => {
+                    adFloatContainer.remove();
+                    // Set adClosed = true, lúc này trình duyện không hiện quảng cáo này nữa.
+                    localStorage.setItem('adClosed', 'true');
+                    console.log(localStorage);
+                });
+            }
+        }
+    });
+    </code>
+    </pre>
   </section>
