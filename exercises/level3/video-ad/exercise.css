@@ -2,3 +2,13 @@
     text-align: center;
     margin: 10px 0;
 }
+
+.float {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+
+.float video {
+    height: 300px;
+}

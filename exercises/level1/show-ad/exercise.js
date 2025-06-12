@@ -12,7 +12,7 @@ btnShow.addEventListener('click', () => {
         adContainer.remove();
         btnShow.disabled = false;
     }, 5000);
-})
+});
 
 
 //Jquery

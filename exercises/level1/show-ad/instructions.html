@@ -7,25 +7,25 @@
       <li>Banner tự động ẩn sau 5 giây.</li>
     </ul>
     <p>Nhấn nút “Hiện quảng cáo” bên dưới để thử:</p>
-    <button id="show-ad-btn">Hiện quảng cáo</button>
     <pre>
-    <code>
-    const btnShow = document.getElementById('show-ad-btn');
-
-    btnShow.addEventListener('click', () => {
-        btnShow.disabled = true;
-        const adContainer = document.createElement('div');
-        adContainer.id = 'ad-banner';
-        adContainer.innerHTML = `&lt;h2&gt;Đây là quảng cáo đơn giản&lt;/h2&gt;
-        `;
-        document.querySelector('#box-show-ad .exercise-body').appendChild(adContainer);
-
-        setTimeout(() => {
+      <code>
+        const btnShow = document.getElementById('show-ad-btn');
+        
+        btnShow.addEventListener('click', () => {
+          btnShow.disabled = true;
+          const adContainer = document.createElement('div');
+          adContainer.id = 'ad-banner';
+          adContainer.innerHTML = `&lt;h2&gt;Đây là quảng cáo đơn giản&lt;/h2&gt;
+          `;
+          document.querySelector('#box-show-ad .exercise-body').appendChild(adContainer);
+          
+          setTimeout(() => {
             adContainer.remove();
             btnShow.disabled = false;
-        }, 5000);
-    });
-    </code>
+          }, 5000);
+        });
+      </code>
     </pre>
+    <button id="show-ad-btn">Hiện quảng cáo</button>
   </section>
   <script src="./exercise.js"></script>

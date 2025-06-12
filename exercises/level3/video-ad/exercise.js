@@ -11,3 +11,11 @@ document.querySelector('html').addEventListener('click', () => {
    } 
 });
 
+window.addEventListener('scroll', () => {
+   if(scrollY < 1500) {
+      document.querySelector('.video-container').classList.add('float');
+   } else {
+      document.querySelector('.video-container').classList.remove('float');
+   }
+});
+
